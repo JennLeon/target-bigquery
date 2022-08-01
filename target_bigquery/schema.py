@@ -68,7 +68,14 @@ def create_valid_bigquery_field_name(field_name):
             cleaned_up_field_name += char
         else:
             # otherwise, replace it with underscore
-            cleaned_up_field_name += "_"
+            if char == '€':
+                cleaned_up_field_name += "euro"
+            elif char == '$':
+                cleaned_up_field_name += "money"
+            elif char == '%':
+                cleaned_up_field_name += "avg"
+            else:
+                cleaned_up_field_name += "_"
 
     # if field starts with digit, prepend it with underscore
     if cleaned_up_field_name[0].isdigit():
